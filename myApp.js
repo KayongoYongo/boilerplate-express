@@ -32,4 +32,9 @@ app.get("/", function(req, res) {
 staticPath = __dirname + '/public';
 app.use('/public', express.static(staticPath))
 
+// Task 4
+// Serve JSON
+app.get("/json", function(req, res) {
+    res.json({"message": "Hello json"} );
+})
  module.exports = app;
