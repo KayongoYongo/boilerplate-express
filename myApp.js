@@ -2,6 +2,13 @@ require('dotenv').config();
 let express = require('express');
 let app = express();
 
+// Task 6
+// Middleware logger function
+app.use(function(req, res, next) {
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
+    next();
+})
+
 // Task 1
 // Start a working Express Server
 // Hello will be a callback function
@@ -50,4 +57,17 @@ app.get("/json/uppercase", function(req, res) {
     }
 })
 
- module.exports = app;
+// Task 7
+// Chain Middleware to Create a Time Server
+// app.METHOD(path, middlewareFunction)
+const addTimeMiddleware = (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+};
+
+// route handler for /now endpoint
+app.get('/now', addTimeMiddleware, (req, res) => {
+    res.json( { time: req.time });
+})
+
+module.exports = app;
