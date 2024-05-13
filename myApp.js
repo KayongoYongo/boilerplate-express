@@ -70,4 +70,11 @@ app.get('/now', addTimeMiddleware, (req, res) => {
     res.json( { time: req.time });
 })
 
+// Task 8
+// Get Route Parameter Input from the Client
+app.get('/:word/echo', function(req, res) {
+    const word = req.params.word;
+    res.json({ "echo": word })
+})
+
 module.exports = app;
