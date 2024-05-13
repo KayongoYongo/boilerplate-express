@@ -10,12 +10,19 @@ const Hello = (req, res) => {
 // The syntax is app.METHOD(PATH, HANDLER)
 // METHOD is an http method in lowercase. PATH is a relative path on the server (it can be a string, or even a regular expression).
 // HANDLER is a function that Express calls when the route is matched. Handlers take the form function(req, res) {...}.
-app.get("/", Hello);
+// Since we want to serve a HTML file, we have to comment out the first route
+// app.get("/", Hello);
 
 // Another option of the above
 app.get("/hello", function(req, res){
     res.send("Hello Express with callback");
 })
 
-//
+// Task 2
+// Serve a HTML file
+app.get("/", function(req, res) {
+    absolutePath = __dirname + '/views/index.html';
+    res.sendFile(absolutePath);
+})
+
  module.exports = app;
