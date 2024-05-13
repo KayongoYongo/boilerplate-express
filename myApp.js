@@ -1,6 +1,9 @@
+// task 0
 require('dotenv').config();
 let express = require('express');
+const bodyParser = require('body-parser');
 let app = express();
+
 
 // Task 6
 // Middleware logger function
@@ -86,4 +89,18 @@ app.get('/name', function(req, res) {
     res.json({ name: `${firstName} ${lastName}` })
 })
 
+// Task 10
+// Use body-parser to Parse POST Requests
+app.use(bodyParser.urlencoded({extended:false}));
+
+app.use(bodyParser.json());
+
+// Task 11
+// Get Data from POST Requests
+app.post('/name', function(req, res) {
+    const firstName = req.body.first; // Retrieve first name from request body
+    const lastName = req.body.last; // Retrieve last name from request body
+
+    res.json({ name: `${firstName} ${lastName}` })
+})
 module.exports = app;
