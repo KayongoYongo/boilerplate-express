@@ -25,4 +25,18 @@ app.get("/", function(req, res) {
     res.sendFile(absolutePath);
 })
 
+// Task 3
+// Serve static assets
+// Since the specific file has already been referenced, there's no need of selecting it
+// Just include the directory and it will be fine
+staticPath = __dirname + '/public';
+app.use('/public', express.static(staticPath))
+
+
+// Task 4
+// Serve JSON
+app.get("/json", function(req, res) {
+    res.json({"message": "Hello json"} );
+})
+
  module.exports = app;
